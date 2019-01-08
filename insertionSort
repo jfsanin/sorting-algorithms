@@ -1,0 +1,49 @@
+/*
+Insertion sort
+the idea behind this algorithm is insert an element in its correct sorted position.
+the algorithm works:
+
+Create a list which will have all the elements sorted
+At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list,
+and inserts it there. It repeats until no input elements remain.
+
+O(n^2)
+Stable : yes
+*/
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> insertionSort(vector<int> data){
+	for(int i=1; i<data.size(); i++){
+       int j = i;
+       /*
+       It is possible to avoid swaps using linked list, however it will be still necessary
+       find the position where the element have to be inserted.
+
+       Another improvement is looking for the position with a binary search, taking advange
+       that the left part of the array is sorted.
+       */
+	   while(j>0 && data[j-1]>data[j]){
+	      swap(data[j-1], data[j]);
+	      j--;
+	   }
+	}
+
+	return data;
+}
+
+int main(){
+
+	vector<int> unordered = { 8, 3, 5, 2};
+	vector<int> ordered = { 2, 3, 5, 8};
+
+	if(insertionSort(unordered) == ordered){
+		cout<<"Sorting was successfull";
+	}
+	else{
+		cout<<"Sorting was not successfull";
+	}
+	
+}
